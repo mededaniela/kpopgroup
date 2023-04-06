@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface MemberRepository extends CrudRepository<Member, Long> {
 
-	List<Group> findByArtistName(String string);
+	List<Member> findByArtistname(String string);
 }

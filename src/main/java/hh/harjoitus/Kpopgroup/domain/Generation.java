@@ -19,23 +19,33 @@ public class Generation {
 	
 	@JsonIgnoreProperties("generation")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "generation")
-	private List<Group> groups;
+	private List<Kpopgroup> kpopgroups;
 	
 	// Constructors
 	
 	public Generation() {
-		
+		super();
+		this.generationId = null;
+		this.generationName = null;
 	}
 
 	public Generation(String generationName) {
 		super();
 		this.generationName = generationName;
 	}
+	
+	
 
-	public Generation(String generationName, List<Group> groups) {
+	public Generation(Long generationId, String generationName) {
+		super();
+		this.generationId = generationId;
+		this.generationName = generationName;
+	}
+
+	public Generation(String generationName, List<Kpopgroup> kpopgroups) {
 		super();
 		this.generationName = generationName;
-		this.groups = groups;
+		this.kpopgroups = kpopgroups;
 	}
 	
 	// Getters and setters
@@ -56,12 +66,17 @@ public class Generation {
 		this.generationName = generationName;
 	}
 
-	public List<Group> getGroups() {
-		return groups;
+	public List<Kpopgroup> getKpopgroups() {
+		return kpopgroups;
 	}
 
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
+	public void setKpopgroups(List<Kpopgroup> kpopgroups) {
+		this.kpopgroups = kpopgroups;
+	}
+
+	@Override
+	public String toString() {
+		return "Generation [generationId=" + generationId + ", generationName=" + generationName + "]";
 	}
 	
 	
