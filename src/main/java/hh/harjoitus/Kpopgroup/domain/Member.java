@@ -12,22 +12,37 @@ public class Member {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long memberId;
+	private Long memberId;
 	private String artistname;
 	private String lastname;
 	private String firstname;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("members")
-	@JoinColumn(name= "groupId")
-	private Group group;
+	@JsonIgnoreProperties("member")
+	@JoinColumn(name= "id")
+	private Kpopgroup kpopgroup;
 	
 	// Constructors
 	
 	public Member() {
-		
+		super();
+		this.memberId = null;
+		this.artistname = null;
+		this.lastname = null;
+		this.firstname = null;
 	}
 	
+	
+	public Member(long memberId, String artistname, String lastname, String firstname) {
+		super();
+		this.memberId = memberId;
+		this.artistname = artistname;
+		this.lastname = lastname;
+		this.firstname = firstname;
+	}
+
+
+
 	public Member(String artistname, String lastname, String firstname) {
 		super();
 		this.artistname = artistname;
@@ -35,12 +50,12 @@ public class Member {
 		this.firstname = firstname;
 	}
 
-	public Member(String artistname, String lastname, String firstname, Group group) {
+	public Member(String artistname, String lastname, String firstname, Kpopgroup kpopgroup) {
 		super();
 		this.artistname = artistname;
 		this.lastname = lastname;
 		this.firstname = firstname;
-		this.group = group;
+		this.kpopgroup = kpopgroup;
 	}
 	
 	// Getters and setters
@@ -77,12 +92,12 @@ public class Member {
 		this.firstname = firstname;
 	}
 
-	public Group getGroup() {
-		return group;
+	public Kpopgroup getKpopgroup() {
+		return kpopgroup;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setKpopgroup(Kpopgroup kpopgroup) {
+		this.kpopgroup = kpopgroup;
 	}
 
 	
