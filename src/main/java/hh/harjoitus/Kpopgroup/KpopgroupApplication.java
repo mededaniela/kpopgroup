@@ -17,7 +17,6 @@ import hh.harjoitus.Kpopgroup.domain.MemberRepository;
 public class KpopgroupApplication {
 
 	public static void main(String[] args) {
-		private static final Logger log = LoggerFactory.getLogger(KpopgroupApplication.class);  
 		
 		SpringApplication.run(KpopgroupApplication.class, args);
 	}
