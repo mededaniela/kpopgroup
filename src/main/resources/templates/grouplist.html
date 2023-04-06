@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+<title>Kpop Group List</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<h1>Kpop Groups</h1>
+<table class="table table-striped">
+<tbody>
+<tr>
+	<th>Group name</th>
+	<th>Members</th>
+	<th>Debut year</th>
+	<th>Generation</th>
+	</tr>
+<tr th:each = "group : ${groups}">
+  <td th:text="${group.name}"></td> 
+  <td th:text="${group.member.artistname}"></td> 
+  <td th:text="${group.debutyear}"></td>
+ <td th:text="${group.generation.generationName}"></td> 
+  <td><a th:href="@{/delete/{id}(id=${group.id})}" class="btn btn-danger">Delete</a> </td>
+</tr>
+</tbody>
+</table>
+<a href="/add" class="btn btn-success">Add a Group</a>  
+</body>
+</html>
