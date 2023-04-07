@@ -1,5 +1,8 @@
 package hh.harjoitus.Kpopgroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +16,7 @@ import hh.harjoitus.Kpopgroup.domain.Kpopgroup;
 import hh.harjoitus.Kpopgroup.domain.KpopgroupRepository;
 import hh.harjoitus.Kpopgroup.domain.Member;
 import hh.harjoitus.Kpopgroup.domain.MemberRepository;
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class KpopgroupApplication {
@@ -24,6 +28,7 @@ public class KpopgroupApplication {
 		SpringApplication.run(KpopgroupApplication.class, args);
 	}
 	
+	@Transactional
 	@Bean
 	public CommandLineRunner examples(KpopgroupRepository kpopgroupRepository, MemberRepository memberRepository, GenerationRepository generationRepository) {
 
@@ -55,19 +60,13 @@ public class KpopgroupApplication {
 			log.info("save some members");
 			
 			Member member1 = new Member("Sana", "Minatozaki", "Sana", kpopgroup1);
-			// Member member2 = new Member("Jihyo", "Park", "Ji-hyo", kpopgroup1);
+			 Member member2 = new Member("Jihyo", "Park", "Ji-hyo", kpopgroup1);
 			Member member3 = new Member("Daesung", "Dae-sung", "Kang", kpopgroup2);
 			
 			memberRepository.save(member1);
-			// memberRepository.save(member2);
+			memberRepository.save(member2);
 			memberRepository.save(member3);
-			
 
-			log.info("fetch all members");
-			for (Member member : memberRepository.findAll()) {
-				log.info(member.toString());
-
-		}
+		};
 		};
 	}
-}

@@ -3,6 +3,8 @@ package hh.harjoitus.Kpopgroup.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,30 +19,32 @@ public class Kpopgroup {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String kpopgroupname;
-	private int debutyear;
 	
-	@OneToMany
-	@JsonIgnoreProperties("kpopgroups")
-	@JoinColumn(name= "memberId")
+	private String kpopgroupname;
+	private Integer debutyear;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kpopgroup")
+	@JsonIgnoreProperties("kpopgroup")
 	private List<Member> members;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("kpopgroups")
 	@JoinColumn(name="generationId")
 	private Generation generation;
 	
 	// Constructors
-	
+	 
 	public Kpopgroup() {
 		super();
 		this.id = null;
 		this.kpopgroupname = null;
 		this.debutyear = 0;
+		this.members = null;
 	}
 	
 	
 	
-	public Kpopgroup(long id, String kpopgroupname, int debutyear) {
+	public Kpopgroup(Long id, String kpopgroupname, Integer debutyear) {
 		super();
 		this.id = id;
 		this.kpopgroupname = kpopgroupname;
@@ -49,13 +53,13 @@ public class Kpopgroup {
 
 
 
-	public Kpopgroup(String kpopgroupname, int debutyear) {
+	public Kpopgroup(String kpopgroupname, Integer debutyear) {
 		super();
 		this.kpopgroupname = kpopgroupname;
 		this.debutyear = debutyear;
 	}
 
-	public Kpopgroup(String kpopgroupname, int debutyear, List<Member> members, Generation generation) {
+	public Kpopgroup(String kpopgroupname, Integer debutyear, List<Member> members, Generation generation) {
 		super();
 		this.kpopgroupname = kpopgroupname;
 		this.debutyear = debutyear;
@@ -64,7 +68,7 @@ public class Kpopgroup {
 	}
 	
 
-	public Kpopgroup(String kpopgroupname, int debutyear, Generation generation) {
+	public Kpopgroup(String kpopgroupname, Integer debutyear, Generation generation) {
 		super();
 		this.kpopgroupname = kpopgroupname;
 		this.debutyear = debutyear;
@@ -73,12 +77,12 @@ public class Kpopgroup {
 
 // Getters and setters
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long groupId) {
-		this.id = groupId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getKpopgroupname() {
@@ -89,11 +93,11 @@ public class Kpopgroup {
 		this.kpopgroupname = kpopgroupname;
 	}
 
-	public int getDebutyear() {
+	public Integer getDebutyear() {
 		return debutyear;
 	}
 
-	public void setDebutyear(int debutyear) {
+	public void setDebutyear(Integer debutyear) {
 		this.debutyear = debutyear;
 	}
 
@@ -123,6 +127,8 @@ public class Kpopgroup {
 	public String toString() {
 		return "Kpopgroup [id=" + id + ", kpopgroupname=" + kpopgroupname + ", debutyear=" + debutyear + "]";
 	}
+	
+	
 	
 	
 	

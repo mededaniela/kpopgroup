@@ -13,16 +13,17 @@
 <tbody>
 <tr>
 	<th>Group name</th>
-	<th>Members</th>
 	<th>Debut year</th>
 	<th>Generation</th>
+	<th>Members</th>
 	</tr>
 <tr th:each = "kpopgroup : ${kpopgroups}">
   <td th:text="${kpopgroup.kpopgroupname}"></td> 
-  <td th:text="${kpopgroup.members}"></td> 
   <td th:text="${kpopgroup.debutyear}"></td>
 <td th:text="${kpopgroup.generation.generationName}"></td>
-  <td><a th:href="@{/delete/{id}(id=${kpopgroup.id})}" class="btn btn-danger">Delete</a> </td>
+<td th:text="${kpopgroup.members.lastname}"></td>
+<td><a href="/addmember" class="btn btn-success">Add members</a> </td>
+   <td><a th:href="@{/delete/{id}(id=${kpopgroup.id})}" class="btn btn-danger">Delete</a> </td>
 </tr>
 </tbody>
 </table>
