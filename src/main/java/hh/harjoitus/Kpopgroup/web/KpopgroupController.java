@@ -13,7 +13,7 @@ import hh.harjoitus.Kpopgroup.domain.Kpopgroup;
 import hh.harjoitus.Kpopgroup.domain.KpopgroupRepository;
 
 @Controller
-public class GroupController {
+public class KpopgroupController {
 	
 	@Autowired
 	private KpopgroupRepository kpopgroupRepository;
@@ -51,7 +51,7 @@ public class GroupController {
 		
 		// Delete a group
 		@GetMapping("/delete/{id}")
-		public String deleteGroup(@PathVariable("id") Long id, Model model) {
+		public String deleteGroup(@PathVariable("kpopgroupId") Long id, Model model) {
 			kpopgroupRepository.deleteById(id);
 			return "redirect:../kpopgrouplist";
 		}

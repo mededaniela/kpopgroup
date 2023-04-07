@@ -13,6 +13,7 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long memberId;
+	
 	private String artistname;
 	private String lastname;
 	private String firstname;
@@ -33,7 +34,7 @@ public class Member {
 	}
 	
 	
-	public Member(long memberId, String artistname, String lastname, String firstname) {
+	public Member(Long memberId, String artistname, String lastname, String firstname) {
 		super();
 		this.memberId = memberId;
 		this.artistname = artistname;
@@ -64,7 +65,7 @@ public class Member {
 		return memberId;
 	}
 
-	public void setMemberId(long memberId) {
+	public void setMemberId(Long memberId) {
 		this.memberId = memberId;
 	}
 
