@@ -8,4 +8,7 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
 
 	List<Member> findByArtistname(String string);
 
+	List<Member> findByKpopgroup(Kpopgroup kpopgroup);
+
+
 }

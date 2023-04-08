@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.harjoitus.Kpopgroup.domain.GenerationRepository;
@@ -24,15 +25,11 @@ public class MemberController {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	@GetMapping("/members/{id}")
-	public String memberList(Model model) {
-		model.addAttribute("members", memberRepository.findAll()); 
-		return "memberlist";
-		}
-	
 	@GetMapping("/addmember")
 	public String addMember(Model model) {
 		model.addAttribute("member", new Member());
+		model.addAttribute("kpopgroups", kpopgroupRepository.findAll());
+		model.addAttribute("generation", generationRepository.findAll());
 		return "addmember";
 	}
 	
@@ -40,7 +37,7 @@ public class MemberController {
 	public String saveMember(Member member, Kpopgroup kpopgroup) {
 		memberRepository.save(member);
 		kpopgroupRepository.save(kpopgroup);
-		return "redirect:../memberlist";
+		return "redirect:kpopgrouplist";
 	}
 	}
 	

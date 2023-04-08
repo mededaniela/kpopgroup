@@ -23,7 +23,7 @@ public class Kpopgroup {
 	private String kpopgroupname;
 	private Integer debutyear;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kpopgroup")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "kpopgroup")
 	@JsonIgnoreProperties("kpopgroup")
 	private List<Member> members;
 	

@@ -7,4 +7,5 @@ public interface KpopgroupRepository extends CrudRepository<Kpopgroup, Long> {
 	
 	List<Kpopgroup> findByKpopgroupname(String string);
 
+
 }
