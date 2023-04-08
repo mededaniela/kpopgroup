@@ -66,6 +66,10 @@ public class KpopgroupApplication {
 			memberRepository.save(member1);
 			memberRepository.save(member2);
 			memberRepository.save(member3);
+			
+			log.info("fetch all members");
+			for (Member member : memberRepository.findAll())
+				log.info(member.toString());
 
 		};
 		};

@@ -1,7 +1,11 @@
 package hh.harjoitus.Kpopgroup.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +15,8 @@ import hh.harjoitus.Kpopgroup.domain.Generation;
 import hh.harjoitus.Kpopgroup.domain.GenerationRepository;
 import hh.harjoitus.Kpopgroup.domain.Kpopgroup;
 import hh.harjoitus.Kpopgroup.domain.KpopgroupRepository;
+import hh.harjoitus.Kpopgroup.domain.Member;
+import hh.harjoitus.Kpopgroup.domain.MemberRepository;
 
 @Controller
 public class KpopgroupController {
@@ -21,6 +27,9 @@ public class KpopgroupController {
 	@Autowired
 	private GenerationRepository generationRepository;
 	
+	@Autowired
+	private MemberRepository memberRepository;
+	
 	// The index site
 		@GetMapping("/index")
 		public String indexPage() {
@@ -29,7 +38,7 @@ public class KpopgroupController {
 		
 		// Search a list of groups
 		@GetMapping("/kpopgrouplist")
-		public String listPage(Model model) {
+		public String listPage(Model model, Kpopgroup kpopgroup) {
 			model.addAttribute("kpopgroups", kpopgroupRepository.findAll());
 			return "kpopgrouplist";
 		}
@@ -38,20 +47,21 @@ public class KpopgroupController {
 		@GetMapping("/addkpopgroup")
 		public String addGroup(Model model) {
 			model.addAttribute("kpopgroup", new Kpopgroup());
+			model.addAttribute("generations", generationRepository.findAll());
 			return "addkpopgroup";
 		}
 		
 		// Save a group
-		@PostMapping("/save")
+		@PostMapping("/savekpopgroup")
 		public String save(Kpopgroup kpopgroup, Generation generation) {
 			kpopgroupRepository.save(kpopgroup);
 			generationRepository.save(generation);
-			return "redirect:../kpopgrouplist";
+			return "redirect:kpopgrouplist";
 		}
 		
 		// Delete a group
 		@GetMapping("/delete/{id}")
-		public String deleteGroup(@PathVariable("kpopgroupId") Long id, Model model) {
+		public String deleteGroup(@PathVariable("id") Long id, Model model) {
 			kpopgroupRepository.deleteById(id);
 			return "redirect:../kpopgrouplist";
 		}

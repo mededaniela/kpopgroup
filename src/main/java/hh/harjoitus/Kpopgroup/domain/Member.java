@@ -1,5 +1,9 @@
 package hh.harjoitus.Kpopgroup.domain;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +23,7 @@ public class Member {
 	private String firstname;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("member")
+	@JsonIgnoreProperties("members")
 	@JoinColumn(name= "id")
 	private Kpopgroup kpopgroup;
 	
