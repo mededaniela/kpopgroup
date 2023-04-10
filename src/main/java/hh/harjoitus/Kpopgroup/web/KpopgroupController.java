@@ -2,6 +2,7 @@ package hh.harjoitus.Kpopgroup.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.harjoitus.Kpopgroup.domain.Generation;
 import hh.harjoitus.Kpopgroup.domain.GenerationRepository;
@@ -65,5 +70,29 @@ public class KpopgroupController {
 			kpopgroupRepository.deleteById(id);
 			return "redirect:../kpopgrouplist";
 		}
+		
+		// REST Search all the kpop groups
+		@GetMapping("/kpopgroups")
+	    public @ResponseBody List<Kpopgroup> kpopgroupListRest() {	
+	        return (List<Kpopgroup>) kpopgroupRepository.findAll();
+	    }    
+
+		// REST Search kpopg roup by id
+	    @GetMapping("/kpopgroups/{id}")
+	    public @ResponseBody Optional<Kpopgroup> findKpopgroupRest(@PathVariable("id") Long kpopgroupId) {	
+	    	return kpopgroupRepository.findById(kpopgroupId);
+	    }      
+	    
+	    // REST Save a new kpop group
+	    @PostMapping("/kpopgroups")
+	    public @ResponseBody Kpopgroup saveKpopgroupRest(@RequestBody Kpopgroup kpopgroup) {	
+	    	return kpopgroupRepository.save(kpopgroup);
+	    }
+	    
+	    // REST homepage
+	    @GetMapping("/resthome")
+	    public String getRestHome() {	
+	    	return "resthomepage";
+	    }
 
 }
