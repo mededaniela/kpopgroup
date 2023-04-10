@@ -16,6 +16,8 @@ import hh.harjoitus.Kpopgroup.domain.Kpopgroup;
 import hh.harjoitus.Kpopgroup.domain.KpopgroupRepository;
 import hh.harjoitus.Kpopgroup.domain.Member;
 import hh.harjoitus.Kpopgroup.domain.MemberRepository;
+import hh.harjoitus.Kpopgroup.domain.User;
+import hh.harjoitus.Kpopgroup.domain.UserRepository;
 import jakarta.transaction.Transactional;
 
 @SpringBootApplication
@@ -30,7 +32,7 @@ public class KpopgroupApplication {
 	
 	@Transactional
 	@Bean
-	public CommandLineRunner examples(KpopgroupRepository kpopgroupRepository, MemberRepository memberRepository, GenerationRepository generationRepository) {
+	public CommandLineRunner examples(KpopgroupRepository kpopgroupRepository, MemberRepository memberRepository, GenerationRepository generationRepository, UserRepository userRepository) {
 
 		return (args) -> {
 			
@@ -70,6 +72,11 @@ public class KpopgroupApplication {
 			log.info("fetch all members");
 			for (Member member : memberRepository.findAll())
 				log.info(member.toString());
+			
+			User user1 = new User("user", "$2a$10$Dvqg0cFI3/dNX7sjNuLMdeB.PEKCpxkbD.eScexte5ilD0y8ukczq", "USER");
+			User user2 = new User("admin", "$2a$10$BxylKdaiRNigzTmEeHgu4ur12YeFqO8ZjbOZWovyNe1CeGIKAO1QG", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 
 		};
 		};
