@@ -44,6 +44,8 @@ public class KpopgroupController {
 		@GetMapping("/kpopgrouplist")
 		public String listPage(Model model, Member member, Kpopgroup kpopgroup) {
 			model.addAttribute("kpopgroups", kpopgroupRepository.findAll());
+			List<Member> members = (List<Member>) memberRepository.findAll();
+			model.addAttribute("members", members);
 			return "kpopgrouplist";
 		}
 		

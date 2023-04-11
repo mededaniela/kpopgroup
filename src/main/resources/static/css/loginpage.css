@@ -28,6 +28,10 @@ button {
   width: 100%;
 }
 
+a {
+	color: black;
+}
+
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;

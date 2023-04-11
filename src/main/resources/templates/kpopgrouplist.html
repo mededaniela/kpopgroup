@@ -10,21 +10,21 @@
 <link type="text/css" rel="stylesheet" href="/css/kpopstyle.css" />
 </head>
 <body>
+	&nbsp;&nbsp;&nbsp;
 	<h1 align="center">Kpop Groups</h1>
 	&nbsp;&nbsp;&nbsp;
-	<h3 align="center">
+	<h4 align="center">
 		Welcome <span sec:authentication="name"></span> !
-	</h3>
-	</div>
+	</h4>
 	&nbsp;&nbsp;&nbsp;
-	<table class="table table-striped">
-		<tr>
+	<table class="table">
+		<tr class="titles">
 			<th>Group name</th>
 			<th>Debut year</th>
 			<th>Generation</th>
 			<th>Members</th>
 		</tr>
-		<tr th:each="kpopgroup, member : ${kpopgroups}">
+		<tr class="content" th:each="kpopgroup, member : ${kpopgroups}">
 			<td th:text="${kpopgroup.kpopgroupname}"></td>
 			<td th:text="${kpopgroup.debutyear}"></td>
 			<td th:text="${kpopgroup?.generation?.generationName}"></td>
@@ -34,12 +34,11 @@
 		</tr>
 	</table>
 	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addkpopgroup"
-		class="btn btn-success">Add a Group</a>
+		class="button">Add a Group</a>
 	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addmember"
-		class="btn btn-success">Add a member</a>
-	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/deletemember"
-		class="btn btn-danger">Delete a member</a>
+		class="button">Add a member</a>
 		&nbsp;&nbsp;&nbsp;
+		<hr class="solid">
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out" />
 	</form>

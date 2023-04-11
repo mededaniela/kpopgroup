@@ -110,7 +110,7 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		return this.artistname + " (" + this.lastname + " " + this.firstname + ")";
+		return this.artistname.replace("[", "");
 	}
 	
 	
