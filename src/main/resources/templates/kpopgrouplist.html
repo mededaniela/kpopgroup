@@ -29,15 +29,15 @@
 			<td th:text="${kpopgroup.debutyear}"></td>
 			<td th:text="${kpopgroup?.generation?.generationName}"></td>
 			<td th:text="${kpopgroup.members}"></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a
+			<td sec:authorize="hasAnyAuthority('ADMIN','USER')"><a
 				th:href="@{/delete/{id}(id=${kpopgroup.id})}">Delete</a></td>
 		</tr>
 	</table>
-	<a sec:authorize="hasAuthority('ADMIN')" href="/addkpopgroup"
+	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addkpopgroup"
 		class="btn btn-success">Add a Group</a>
-	<a sec:authorize="hasAuthority('ADMIN')" href="/addmember"
+	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addmember"
 		class="btn btn-success">Add a member</a>
-	<a sec:authorize="hasAuthority('ADMIN')" href="/deletemember"
+	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/deletemember"
 		class="btn btn-danger">Delete a member</a>
 		&nbsp;&nbsp;&nbsp;
 	<form th:action="@{/logout}" method="post">

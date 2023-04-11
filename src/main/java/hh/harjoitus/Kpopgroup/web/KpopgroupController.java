@@ -57,7 +57,7 @@ public class KpopgroupController {
 		
 		// Save a group
 		@PostMapping("/savekpopgroup")
-		@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+		@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
 		public String save(Kpopgroup kpopgroup, Generation generation) {
 			kpopgroupRepository.save(kpopgroup);
 			generationRepository.save(generation);
