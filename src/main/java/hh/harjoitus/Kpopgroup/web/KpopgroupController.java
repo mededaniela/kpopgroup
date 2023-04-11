@@ -57,7 +57,7 @@ public class KpopgroupController {
 		
 		// Save a group
 		@PostMapping("/savekpopgroup")
-		@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+		@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 		public String save(Kpopgroup kpopgroup, Generation generation) {
 			kpopgroupRepository.save(kpopgroup);
 			generationRepository.save(generation);
@@ -66,7 +66,7 @@ public class KpopgroupController {
 		
 		// Delete a group
 		@GetMapping("/delete/{id}")
-		@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+		@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 		public String deleteGroup(@PathVariable("id") Long id, Model model) {
 			kpopgroupRepository.deleteById(id);
 			return "redirect:../kpopgrouplist";
