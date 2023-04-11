@@ -1,6 +1,7 @@
 package hh.harjoitus.Kpopgroup.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class KpopgroupController {
 		
 		// Search a list of groups
 		@GetMapping("/kpopgrouplist")
-		public String listPage(Model model, Kpopgroup kpopgroup) {
+		public String listPage(Model model, Member member, Kpopgroup kpopgroup) {
 			model.addAttribute("kpopgroups", kpopgroupRepository.findAll());
 			return "kpopgrouplist";
 		}
@@ -56,6 +57,7 @@ public class KpopgroupController {
 		
 		// Save a group
 		@PostMapping("/savekpopgroup")
+		@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 		public String save(Kpopgroup kpopgroup, Generation generation) {
 			kpopgroupRepository.save(kpopgroup);
 			generationRepository.save(generation);

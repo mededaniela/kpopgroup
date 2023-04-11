@@ -47,10 +47,10 @@ public class MemberController {
 		return "redirect:kpopgrouplist";
 	}
 	
-	@GetMapping("/deletemember/{id}")
-	public String deleteGroup(@PathVariable("memberId") Long memberid, Model model) {
-		memberRepository.deleteById(memberid);
-		return "redirect:../kpopgrouplist";
+	@GetMapping("/deletemember")
+	public String deleteMember(@PathVariable("memberId") Long memberId) {
+		memberRepository.deleteById(memberId);
+		return "redirect:kpopgrouplist";
 	}
 	}
 	

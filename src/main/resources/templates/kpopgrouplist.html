@@ -5,32 +5,43 @@
 
 <meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
 <title>Kpop Group List</title>
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/kpopstyle.css" />
 </head>
 <body>
-<h1>Kpop Groups</h1>
-	<h3>Welcome <span sec:authentication="name"></span></h3>
+	<h1 align="center">Kpop Groups</h1>
+	&nbsp;&nbsp;&nbsp;
+	<h3 align="center">
+		Welcome <span sec:authentication="name"></span> !
+	</h3>
 	</div>
-<form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-            </form>
-<table class="table table-striped">
-<tr>
-	<th>Group name</th>
-	<th>Debut year</th>
-	<th>Generation</th>
-	<th>Members</th>
-	</tr>
-<tr th:each = "kpopgroup, member : ${kpopgroups}">
-  <td th:text="${kpopgroup.kpopgroupname}"></td> 
-  <td th:text="${kpopgroup.debutyear}"></td>
-<td th:text="${kpopgroup?.generation?.generationName}"></td>
-<td th:text="${kpopgroup.members}"></td>
-   <td><a th:href="@{/delete/{id}(id=${kpopgroup.id})}" class="btn btn-danger">Delete</a> </td>
-</tr>
-</table>
-<a href="/addkpopgroup" class="btn btn-success">Add a Group</a>
-<a href="/addmember" class="btn btn-success">Add a member</a>
-  
+	&nbsp;&nbsp;&nbsp;
+	<table class="table table-striped">
+		<tr>
+			<th>Group name</th>
+			<th>Debut year</th>
+			<th>Generation</th>
+			<th>Members</th>
+		</tr>
+		<tr th:each="kpopgroup, member : ${kpopgroups}">
+			<td th:text="${kpopgroup.kpopgroupname}"></td>
+			<td th:text="${kpopgroup.debutyear}"></td>
+			<td th:text="${kpopgroup?.generation?.generationName}"></td>
+			<td th:text="${kpopgroup.members}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/delete/{id}(id=${kpopgroup.id})}">Delete</a></td>
+		</tr>
+	</table>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/addkpopgroup"
+		class="btn btn-success">Add a Group</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/addmember"
+		class="btn btn-success">Add a member</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/deletemember"
+		class="btn btn-danger">Delete a member</a>
+		&nbsp;&nbsp;&nbsp;
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
 </body>
 </html>

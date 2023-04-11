@@ -110,8 +110,7 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", artistname=" + artistname + ", lastname=" + lastname + ", firstname="
-				+ firstname + "]";
+		return this.artistname + " (" + this.lastname + " " + this.firstname + ")";
 	}
 	
 	

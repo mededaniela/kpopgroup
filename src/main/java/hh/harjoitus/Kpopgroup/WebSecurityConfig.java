@@ -20,8 +20,8 @@ public class WebSecurityConfig{
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests()
-        	.requestMatchers("/", "/kpopgrouplist").permitAll() // Enable css when logged out
-        	.requestMatchers("/signup", "/saveuser").permitAll()
+        	.requestMatchers("/", "/kpopgrouplist", "/css/**", "/signup", "/saveuser").permitAll() // Enable css when logged out
+        	.requestMatchers("/delete/**", "/addmember", "/deletemember/**", "/addkpopgroup").hasAnyAuthority("ADMIN", "USER")
         	.anyRequest().authenticated()
         	.and()
       .formLogin()

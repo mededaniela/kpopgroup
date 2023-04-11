@@ -1,29 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Kpop Group List</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Kpop Group List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div class ="col-md-4">
-	<h1>Add Kpop group</h1>
-	<div>
-		<form th:object="${kpopgroup}" th:action="@{savekpopgroup}" action="#" method="post">
-		  	<label for="kpopgroupname">Group name</label>
-			<input type="text" id="kpopgroupname" th:field="*{kpopgroupname}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="debutyear">Debut year</label>
-			<input type="text" id="debutyear" th:field="*{debutyear}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="catlist">Generation</label>
-<select id="catlist" th:field="*{generation.generationId}" class="form-control">
-<option th:each="cat: ${generations}" th:value="${cat.generationId}" th:text="${cat.generationName}"></option>
-</select>
+	<div class="col-md-4">
+		<h1>Add Kpop group</h1>
+		<div>
+			<form th:object="${kpopgroup}" th:action="@{savekpopgroup}"
+				action="#" method="post">
+				<label for="kpopgroupname">Group name</label> <input type="text"
+					id="kpopgroupname" th:field="*{kpopgroupname}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="debutyear">Debut year</label> <input type="text"
+					id="debutyear" th:field="*{debutyear}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="catlist">Generation</label> <select id="catlist"
+					th:field="*{generation.generationId}" class="form-control">
+					<option th:each="cat: ${generations}"
+						th:value="${cat.generationId}" th:text="${cat.generationName}"></option>
+				</select> <input type="submit" class="btn btn-primary" value="Save"></input>
+			</form>
+		</div>
+	</div>
 
-			<input type="submit" class="btn btn-primary" value="Save"></input>
-		</form>
-	</div>
-	</div>
-	
 </body>
 </html>
