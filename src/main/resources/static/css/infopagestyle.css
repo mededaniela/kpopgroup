@@ -1,0 +1,62 @@
+body {
+	text-align: center;
+	justify-content: center;
+}
+
+.row {
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	display: flex;
+	padding: 12px;
+}
+
+.membertable {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.column1 {
+	width: 200px;
+	border: 1px solid #2d2d2d;
+}
+
+.column2 {
+	width: 200px;
+	border: 1px solid #2d2d2d;
+}
+
+.titles {
+	background-color: #F4C2C2;
+}
+
+.membercontent {
+	background-color: #FFF1FA;
+}
+
+table#membertable {
+	width: 40%;
+	margin-left: 30%;
+	margin-right: 20%;
+	justify-content: center;
+}
+
+button {
+  background-color: white;
+  color: #F4C2C2;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-style: solid;
+  border-color: #F4C2C2;
+  cursor: pointer;
+  width: 100%;
+}
+
+hr.solid {
+  width: 50%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}

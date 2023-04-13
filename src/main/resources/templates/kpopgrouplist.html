@@ -22,21 +22,20 @@
 			<th>Group name</th>
 			<th>Debut year</th>
 			<th>Generation</th>
-			<th>Members</th>
+			<th>More info</th>
 		</tr>
 		<tr class="content" th:each="kpopgroup, member : ${kpopgroups}">
 			<td th:text="${kpopgroup.kpopgroupname}"></td>
 			<td th:text="${kpopgroup.debutyear}"></td>
 			<td th:text="${kpopgroup?.generation?.generationName}"></td>
-			<td th:text="${kpopgroup.members}"></td>
+			<td><a
+				th:href="@{/info-page/{id}(id=${kpopgroup.id})}">Info</a></td>
 			<td sec:authorize="hasAnyAuthority('ADMIN','USER')"><a
 				th:href="@{/delete/{id}(id=${kpopgroup.id})}">Delete</a></td>
 		</tr>
 	</table>
 	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addkpopgroup"
 		class="button">Add a Group</a>
-	<a sec:authorize="hasAnyAuthority('ADMIN','USER')" href="/addmember"
-		class="button">Add a member</a>
 		&nbsp;&nbsp;&nbsp;
 		<hr class="solid">
 	<form th:action="@{/logout}" method="post">

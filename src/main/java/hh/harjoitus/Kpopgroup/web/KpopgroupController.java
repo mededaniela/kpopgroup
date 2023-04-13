@@ -1,7 +1,5 @@
 package hh.harjoitus.Kpopgroup.web;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +70,20 @@ public class KpopgroupController {
 		public String deleteGroup(@PathVariable("id") Long id, Model model) {
 			kpopgroupRepository.deleteById(id);
 			return "redirect:../kpopgrouplist";
+		}
+		
+		// Info page of a single kpop group found by id. You can also save a new member
+		@GetMapping("/info-page/{id}")
+		public String infoPage(Model model, @PathVariable("id") Long kpopgroupid) {
+			Optional<Kpopgroup> kpopgroupOptional = kpopgroupRepository.findById(kpopgroupid);
+			Kpopgroup kpopgroup = kpopgroupOptional.get();
+			model.addAttribute("kpopgroup", kpopgroup);
+			model.addAttribute("members", kpopgroupOptional.get().getMembers());
+			Member newMember = new Member();
+			newMember.setKpopgroup(kpopgroup);
+			model.addAttribute("member", newMember);
+			return "info-page";
+	
 		}
 		
 		// REST Search all the kpop groups

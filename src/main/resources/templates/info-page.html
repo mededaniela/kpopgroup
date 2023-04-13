@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/infopagestyle.css" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8">
+<title>Kpop Group List</title>
+</head>
+<body>
+	<h2>
+		<span th:text="${kpopgroup.kpopgroupname}"></span>
+	</h2>
+	<div class="row">
+		<div class="column1">
+			<p>Group name:</p>
+			<p>Debut year:</p>
+			<p>Generation:</p>
+		</div>
+		<div class="column2" th:each="kpopgroupinfo : ${kpopgroup}">
+			<p th:text="${kpopgroupinfo.kpopgroupname}"></p>
+			<p th:text="${kpopgroupinfo.debutyear}"></p>
+			<p th:text="${kpopgroupinfo?.generation?.generationName}"></p>
+		</div>
+	</div>
+	<p>Members:</p>
+	<table id="membertable" style="text-align:center;">
+		<tr class="titles">
+			<th>Artist name</th>
+			<th>Last name</th>
+			<th>First name</th>
+		</tr>
+		<tr class="membercontent" th:each="member : ${members}">
+			<td th:text="${member.artistname}"></td>
+			<td th:text="${member.lastname}"></td>
+			<td th:text="${member.firstname}"></td>
+			<td sec:authorize="hasAnyAuthority('ADMIN','USER')"><a
+				th:href="@{/deletemember/{id}(id=${member.memberId})}">Delete</a></td>
+		</tr>
+	</table>
+			<hr class="solid">
+	<h1>Add a member</h1>
+		<div>
+			<form th:object="${member}" th:action="@{/savemember}" action="#"
+				method="post">
+				<label for="artistname">Artist name</label> <input type="text"
+					id="artistname" th:field="*{artistname}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="lastname">Last name</label> <input type="text"
+					id="lastname" th:field="*{lastname}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="firstname">First name</label> <input type="text"
+					th:field="*{firstname}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				 <input type="hidden" th:field="${member.kpopgroup.id}">
+			 <input type="submit" class="btn btn-primary" value="Add"></input>
+				</form>
+				</div>
+				<hr class="solid">
+				<a  href="/kpopgrouplist"
+		class="button">Go back</a>
+</body>
+</html>
+
+
