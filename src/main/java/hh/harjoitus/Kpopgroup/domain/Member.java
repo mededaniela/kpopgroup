@@ -1,15 +1,13 @@
 package hh.harjoitus.Kpopgroup.domain;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Member {
@@ -18,7 +16,9 @@ public class Member {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long memberId;
 	
+	@NotEmpty
 	private String artistname;
+	
 	private String lastname;
 	private String firstname;
 	

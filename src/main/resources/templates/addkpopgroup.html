@@ -12,6 +12,8 @@
 				action="#" method="post">
 				<label for="kpopgroupname">Group name</label> <input type="text"
 					id="kpopgroupname" th:field="*{kpopgroupname}" />
+					<p th:if="${#fields.hasErrors('kpopgroupname')}" th:errors="*{kpopgroupname}">Kpopgroup name
+						Error</p>
 				<div style="clear: both; display: block; height: 10px;"></div>
 				<label for="debutyear">Debut year</label> <input type="text"
 					id="debutyear" th:field="*{debutyear}" />

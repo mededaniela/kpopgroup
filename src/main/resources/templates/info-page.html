@@ -47,6 +47,9 @@
 				method="post">
 				<label for="artistname">Artist name</label> <input type="text"
 					id="artistname" th:field="*{artistname}" />
+					<p th:if="${#fields.hasErrors('artistname')}" 
+				th:errors="*{artistname}">Artist name
+						Error</p>
 				<div style="clear: both; display: block; height: 10px;"></div>
 				<label for="lastname">Last name</label> <input type="text"
 					id="lastname" th:field="*{lastname}" />
